@@ -42,4 +42,10 @@ BEGIN
 	PRINT CONCAT(@leftMargin, char(9), '  breedtegraad aan.');
 	PRINT CONCAT(@leftMargin, char(9), '- het rechter coordinaat geeft de ');
 	PRINT CONCAT(@leftMargin, char(9), '  hoogtegraad aan.');
+	PRINT CONCAT(@leftMargin, '');
+	PRINT CONCAT(@leftMargin, 'SYMBOLEN');
+	PRINT CONCAT(@leftMargin, '---------');
+	PRINT CONCAT(@leftMargin, char(9), '- S: eigen schip');
+	PRINT CONCAT(@leftMargin, char(9), '- O: geschoten & gemist');
+	PRINT CONCAT(@leftMargin, char(9), '- X: geschoten & geraakt');
 END

@@ -32,11 +32,11 @@ BEGIN
 	BEGIN
 		PRINT CONCAT(@leftMargin, @verticalLine);
 		PRINT CONCAT(@leftMargin, '|'
-				, CASE @col1 WHEN 99 THEN ' O ' WHEN 999 THEN ' X ' ELSE '   ' END, '|'
-				, CASE @col2 WHEN 99 THEN ' O ' WHEN 999 THEN ' X ' ELSE '   ' END, '|'
-				, CASE @col3 WHEN 99 THEN ' O ' WHEN 999 THEN ' X ' ELSE '   ' END, '|'
-				, CASE @col4 WHEN 99 THEN ' O ' WHEN 999 THEN ' X ' ELSE '   ' END, '|'
-				, CASE @col5 WHEN 99 THEN ' O ' WHEN 999 THEN ' X ' ELSE '   ' END, '|'
+				, CASE @col1 WHEN 99 THEN ' O ' WHEN 999 THEN ' X ' WHEN 77 THEN ' S ' ELSE '   ' END, '|'
+				, CASE @col2 WHEN 99 THEN ' O ' WHEN 999 THEN ' X ' WHEN 77 THEN ' S ' ELSE '   ' END, '|'
+				, CASE @col3 WHEN 99 THEN ' O ' WHEN 999 THEN ' X ' WHEN 77 THEN ' S ' ELSE '   ' END, '|'
+				, CASE @col4 WHEN 99 THEN ' O ' WHEN 999 THEN ' X ' WHEN 77 THEN ' S ' ELSE '   ' END, '|'
+				, CASE @col5 WHEN 99 THEN ' O ' WHEN 999 THEN ' X ' WHEN 77 THEN ' S ' ELSE '   ' END, '|'
 				);
 			
 		FETCH NEXT FROM print_player_sea

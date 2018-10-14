@@ -67,6 +67,8 @@
     <Folder Include="opponent\Tables\" />
     <Folder Include="Security\" />
     <Folder Include="dbo" />
+    <Folder Include="game\Functions" />
+    <Folder Include="game\Views" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="game\Tables\config.sql" />
@@ -82,6 +84,8 @@
     <Build Include="dbo\BattleShip.sql" />
     <Build Include="game\PlaceBoats.sql" />
     <Build Include="game\LoadConfig.sql" />
+    <Build Include="game\Functions\udf_Random.sql" />
+    <Build Include="game\Views\Random.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />
