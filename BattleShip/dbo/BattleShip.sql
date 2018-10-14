@@ -31,8 +31,15 @@ AS
 					PRINT CONCAT(@leftMargin, '-----');
 					PRINT CONCAT(@leftMargin, @msg);
 					PRINT CONCAT(@leftMargin, '-----');
+					
+					-- Beurt is nu aan de kustwacht
+					PRINT CONCAT(@leftMargin, 'De kustwacht sloeg terug...');
+					EXEC game.OpponentFiresCannon @msg;
+					PRINT CONCAT(@leftMargin, '-----');
+					PRINT CONCAT(@leftMargin, @msg);
+					PRINT CONCAT(@leftMargin, '-----');
 					EXEC game.PrintSea;	
 
-					-- Hier komt de beurt van de tegenstander...
+					-- Hier evalueren of player heeft gewonnen of verloren
 				END
 		END

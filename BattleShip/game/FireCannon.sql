@@ -78,7 +78,7 @@ BEGIN
 	)
 	
 	UPDATE CTE
-	SET col = CASE WHEN col = 66 THEN 999 ELSE 99 END
+	SET col = CASE WHEN col = 66 OR col = 999 THEN 999 ELSE 99 END
 	WHERE rn = ' + @row_txt + ';';
 
 	EXEC sp_executesql @sql;

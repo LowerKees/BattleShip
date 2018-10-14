@@ -87,6 +87,8 @@
     <Build Include="game\Functions\udf_Random.sql" />
     <Build Include="game\Views\Random.sql" />
     <Build Include="game\FireCannon.sql" />
+    <Build Include="game\OpponentFiresCannon.sql" />
+    <Build Include="opponent\Tables\NextTurns.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />
