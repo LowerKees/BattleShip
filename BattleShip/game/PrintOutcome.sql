@@ -44,6 +44,10 @@ BEGIN
 	-- Print de laatste stand van de zee
 	EXEC game.PrintSea;
 	PRINT '';
-	PRINT CONCAT(Char(9), 'BattleShip voor Sql Server');
-	PRINT CONCAT(CHar(9), '(c) 2018 - Martijn Beenker');
+	PRINT CONCAT(CHAR(9), 'BattleShip voor Sql Server');
+	PRINT CONCAT(CHAR(9), '(c) 2018 - Martijn Beenker');
+	PRINT CONCAT(CHAR(9), '--------------------------');
+	PRINT CONCAT(CHAR(9), 'Special thanks to the ASCII');
+	PRINT CONCAT(CHAR(9), 'ART GENERATOR at:');
+	PRINT CONCAT(CHAR(9), 'http://patorjk.com/software/taag/');
 END
