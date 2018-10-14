@@ -58,7 +58,7 @@ BEGIN
 		FROM player.Sea AS tgt
 		WHERE tgt.coordinate_order = ' + CAST(@row AS NCHAR(1)) + ';';
 	
-	EXEC @sql_for_the_shot;
+	EXEC sp_executesql @sql_for_the_shot;
 
 	-- give some feedback
 	SET @msg = CASE WHEN @coordinates_aimed_at = 77 

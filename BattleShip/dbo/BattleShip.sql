@@ -34,7 +34,7 @@ AS
 					
 					-- Beurt is nu aan de kustwacht
 					PRINT CONCAT(@leftMargin, 'De kustwacht sloeg terug...');
-					EXEC game.OpponentFiresCannon @msg;
+					EXEC game.OpponentFiresCannon @msg OUTPUT;
 					PRINT CONCAT(@leftMargin, '-----');
 					PRINT CONCAT(@leftMargin, @msg);
 					PRINT CONCAT(@leftMargin, '-----');
