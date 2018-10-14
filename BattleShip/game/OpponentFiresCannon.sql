@@ -5,20 +5,72 @@ BEGIN
 	DECLARE
 		@coordinates_to_shoot INT;
 
-	DECLARE
-		@possibilities TABLE (poss INT NOT NULL, [coordinate_order] INT IDENTITY(1,1));
+	-- Smart shot
 
 	-- Check for predefined next turns
-	IF EXISTS (SELECT * FROM opponent.[NextMoves])
+	IF EXISTS (SELECT * FROM opponent.NextMoves)
 		BEGIN
-			PRINT 'Taking a predetermined turn';
+			DECLARE
+				@sql_for_the_smart_shot AS NVARCHAR(MAX),
+				@value_smart_shot AS INT,
+				@column_smart_shot INT,
+				@row_smart_shot INT,
+				@coordinates_aimed_at_smart_shot INT,
+				@sql_smart_shot NVARCHAR(max);
+
+			-- Get the smart coordinates
+			SELECT TOP(1) @column_smart_shot = next_move_column
+				, @row_smart_shot = next_move_row
+			FROM opponent.NextMoves
+			ORDER BY next_move_order ASC;
+
+			-- Vind de waarde waarop geschoten wordt
+			SET @sql_smart_shot = N'
+				SELECT @coordinates_aimed_at_out = col' + CAST(@column_smart_shot AS NCHAR(1)) + '
+				FROM player.Sea
+				WHERE coordinate_order = ' + CAST(@row_smart_shot AS NCHAR(1)) + ';';
+
+			EXEC sp_executesql @sql_smart_shot
+				, N'@coordinates_aimed_at_out INT OUTPUT'
+				, @coordinates_aimed_at_out = @coordinates_aimed_at_smart_shot OUTPUT;
+
+			SET @value_smart_shot = CASE WHEN @coordinates_aimed_at_smart_shot = 77 THEN 999 ELSE 99 END;
+
+			SET @sql_for_the_smart_shot = '
+				UPDATE tgt
+				SET tgt.col' + CAST(@column_smart_shot AS NCHAR(1)) + ' = ' + CAST(@value_smart_shot AS NVARCHAR(3)) + '
+				FROM player.Sea AS tgt
+				WHERE tgt.coordinate_order = ' + CAST(@row_smart_shot AS NCHAR(1)) + ';';
+			
+			EXEC sp_executesql @sql_for_the_smart_shot;
+
+			-- give some feedback
+			SET @msg = CASE WHEN @coordinates_aimed_at_smart_shot = 77 
+							THEN 'De kustwacht heeft een van je schepen geraakt!'
+							ELSE 'De kustwacht schoot mis!'
+					   END;
+
+			-- Delete the suggestion from the 
+			-- Next Moves table
+			DELETE 
+			FROM opponent.NextMoves
+			WHERE next_move_column = @column_smart_shot
+			  AND next_move_row = @row_smart_shot;
+
+				-- If a hit has been made, the 
+				-- engine should calculate the next 
+				-- moves.
+				IF @coordinates_aimed_at_smart_shot = 77
+					BEGIN
+						EXEC game.CalculateNextMoves @column_smart_shot, @row_smart_shot;
+					END
+			RETURN;
 		END
 
+	-- Dumb shot:
 
-	-- check the coordinates
-	-- and only accept them if
-	-- the shot hasn't been taken
-	-- before
+	-- check the coordinates and only accept them if
+	-- the shot hasn't been taken before
 	DECLARE 
 		@sql AS NVARCHAR(max),
 		@coordinates_aimed_at INT = 99;

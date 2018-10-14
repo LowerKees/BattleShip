@@ -88,9 +88,10 @@
     <Build Include="game\Views\Random.sql" />
     <Build Include="game\FireCannon.sql" />
     <Build Include="game\OpponentFiresCannon.sql" />
-    <Build Include="opponent\Tables\NextTurns.sql" />
+    <Build Include="opponent\Tables\NextMoves.sql" />
     <Build Include="game\EvaluateTheSeas.sql" />
     <Build Include="game\PrintOutcome.sql" />
+    <Build Include="game\CalculateNextMoves.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />

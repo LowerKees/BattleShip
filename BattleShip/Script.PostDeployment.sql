@@ -10,4 +10,4 @@ Post-Deployment Script Template
 --------------------------------------------------------------------------------------
 */
 
-EXEC game.LoadConfig;
+EXEC dbo.BattleShip 'NewGame';
