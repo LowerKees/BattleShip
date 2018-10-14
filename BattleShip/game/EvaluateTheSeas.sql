@@ -48,9 +48,6 @@ BEGIN
 		FROM opponent.Sea
 		WHERE col5 = 66) AS src;
 
-	PRINT CAST(@number_of_player_boats AS NVARCHAR(10));
-	PRINT CAST(@number_of_opponent_boats AS NVARCHAR(10));
-
 	IF @number_of_player_boats > 0 AND @number_of_opponent_boats > 0 BEGIN SET @outcome = 'ingame'; RETURN; END
 	IF @number_of_player_boats = 0 AND @number_of_opponent_boats = 0 BEGIN SET @outcome = 'draw'; RETURN; END
 	IF @number_of_player_boats > 0 AND @number_of_opponent_boats = 0 BEGIN SET @outcome = 'win'; RETURN; END

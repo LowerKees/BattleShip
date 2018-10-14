@@ -9,19 +9,12 @@ BEGIN
 	DECLARE
 		@coordinate AS INT;
 
-		PRINT 'Calculating smart moves'
-		PRINT CAST(@column as nvarchar(100))
-		PRINT CAST(@row AS nvarchar(100))
-
 	SET @row -= 1;
 	IF @row = 0 SET @row = null;
 
 	-- De rij wijkt af van het daadwerkelijke coordinate
 	-- dus hier vind correctie plaats.
 	SET @coordinate = CAST(CONCAT(CAST(@row AS NVARCHAR(1)), CAST(@column AS NVARCHAR(1))) AS INT);
-
-	-- TODO: remove debug
-	PRINT 'Coordinate is' + CAST(@coordinate AS NVARCHAR(100));
 
 	-- Insert smart moves for hit
 	-- For corner hits

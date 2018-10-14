@@ -21,24 +21,24 @@ AS
 			-- Er ging iets mis
 			IF @ind_success = CAST(0 AS BIT)
 				BEGIN
-					PRINT CONCAT(@leftMargin, '-----');
+					PRINT CONCAT(@leftMargin, '--------------------------------------------------');
 					PRINT CONCAT(@leftMargin, @msg);
-					PRINT CONCAT(@leftMargin, '-----');
+					PRINT CONCAT(@leftMargin, '--------------------------------------------------');
 					EXEC game.PrintSea;					
 				END
 			-- Het ging goed
 			IF @ind_success = CAST(1 AS BIT)
 				BEGIN
-					PRINT CONCAT(@leftMargin, '-----');
+					PRINT CONCAT(@leftMargin, '--------------------------------------------------');
 					PRINT CONCAT(@leftMargin, @msg);
-					PRINT CONCAT(@leftMargin, '-----');
+					PRINT CONCAT(@leftMargin, '--------------------------------------------------');
 					
 					-- Beurt is nu aan de kustwacht
 					PRINT CONCAT(@leftMargin, 'De kustwacht sloeg terug...');
 					EXEC game.OpponentFiresCannon @msg OUTPUT;
-					PRINT CONCAT(@leftMargin, '-----');
+					PRINT CONCAT(@leftMargin, '--------------------------------------------------');
 					PRINT CONCAT(@leftMargin, @msg);
-					PRINT CONCAT(@leftMargin, '-----');
+					PRINT CONCAT(@leftMargin, '--------------------------------------------------');
 					
 					-- Hier evalueren of player heeft gewonnen of verloren
 					EXEC game.EvaluateTheSeas @outcome OUTPUT;
