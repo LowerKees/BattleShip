@@ -14,7 +14,7 @@
     </RootPath>
     <RootNamespace>BattleShip</RootNamespace>
     <AssemblyName>BattleShip</AssemblyName>
-    <ModelCollation>1033, CI</ModelCollation>
+    <ModelCollation>1033,CI</ModelCollation>
     <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
     <DeployToDatabase>True</DeployToDatabase>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
@@ -23,6 +23,8 @@
     <SqlServerVerification>False</SqlServerVerification>
     <IncludeCompositeObjects>True</IncludeCompositeObjects>
     <TargetDatabaseSet>True</TargetDatabaseSet>
+    <DefaultCollation>Latin1_General_CI_AS</DefaultCollation>
+    <DefaultFilegroup>PRIMARY</DefaultFilegroup>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -57,5 +59,26 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
+    <Folder Include="game\" />
+    <Folder Include="game\Tables\" />
+    <Folder Include="player\" />
+    <Folder Include="player\Tables\" />
+    <Folder Include="opponent\" />
+    <Folder Include="opponent\Tables\" />
+    <Folder Include="Security\" />
+    <Folder Include="dbo" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="game\Tables\config.sql" />
+    <Build Include="player\Tables\Sea.sql" />
+    <Build Include="opponent\Tables\Sea.sql" />
+    <Build Include="Security\game.sql" />
+    <Build Include="Security\opponent.sql" />
+    <Build Include="Security\player.sql" />
+    <Build Include="game\NewGame.sql" />
+    <Build Include="game\PrintSea.sql" />
+    <Build Include="game\PrintLogo.sql" />
+    <Build Include="game\PrintManual.sql" />
+    <Build Include="dbo\BattleShip.sql" />
   </ItemGroup>
 </Project>
