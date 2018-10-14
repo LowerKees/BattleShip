@@ -12,3 +12,4 @@
 
 truncate table player.Sea;
 truncate table opponent.Sea;
+truncate table opponent.NextMoves;

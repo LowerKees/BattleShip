@@ -10,6 +10,7 @@ BEGIN
 	-- Check for predefined next turns
 	IF EXISTS (SELECT * FROM opponent.NextMoves)
 		BEGIN
+			PRINT 'Smart Shot'
 			DECLARE
 				@sql_for_the_smart_shot AS NVARCHAR(MAX),
 				@value_smart_shot AS INT,
@@ -20,7 +21,7 @@ BEGIN
 
 			-- Get the smart coordinates
 			SELECT TOP(1) @column_smart_shot = next_move_column
-				, @row_smart_shot = next_move_row
+				, @row_smart_shot = next_move_row + 1 -- correctie voor afwijking in regelaantallen
 			FROM opponent.NextMoves
 			ORDER BY next_move_order ASC;
 
@@ -33,6 +34,11 @@ BEGIN
 			EXEC sp_executesql @sql_smart_shot
 				, N'@coordinates_aimed_at_out INT OUTPUT'
 				, @coordinates_aimed_at_out = @coordinates_aimed_at_smart_shot OUTPUT;
+
+			PRINT '@coordinates_aimed_at_smart_shot: ' + CAST(@coordinates_aimed_at_smart_shot AS NVARCHAR(10));
+						PRINT '@column_smart_shot: ' + CAST(@column_smart_shot AS NVARCHAR(10));
+			PRINT '@row_smart_shot: ' + CAST(@row_smart_shot AS NVARCHAR(10));
+			PRINT '@row_smart_shot - 1: ' + CAST(@row_smart_shot - 1 AS NVARCHAR(10));
 
 			SET @value_smart_shot = CASE WHEN @coordinates_aimed_at_smart_shot = 77 THEN 999 ELSE 99 END;
 
@@ -52,10 +58,15 @@ BEGIN
 
 			-- Delete the suggestion from the 
 			-- Next Moves table
+			PRINT 'Now deleting with following values'
+			PRINT '@column_smart_shot: ' + CAST(@column_smart_shot AS NVARCHAR(10));
+			PRINT '@row_smart_shot: ' + CAST(@row_smart_shot AS NVARCHAR(10));
+			PRINT '@row_smart_shot - 1: ' + CAST(@row_smart_shot - 1 AS NVARCHAR(10));
+
 			DELETE 
 			FROM opponent.NextMoves
 			WHERE next_move_column = @column_smart_shot
-			  AND next_move_row = @row_smart_shot;
+			  AND next_move_row = @row_smart_shot - 1;
 
 				-- If a hit has been made, the 
 				-- engine should calculate the next 
@@ -68,7 +79,7 @@ BEGIN
 		END
 
 	-- Dumb shot:
-
+	PRINT 'Dumb shot'
 	-- check the coordinates and only accept them if
 	-- the shot hasn't been taken before
 	DECLARE 

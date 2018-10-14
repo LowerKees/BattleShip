@@ -4,6 +4,7 @@ BEGIN
 	SET NOCOUNT ON;
 	TRUNCATE TABLE player.Sea;
 	TRUNCATE TABLE opponent.Sea;
+	TRUNCATE TABLE opponent.NextMoves;
 
 	INSERT INTO player.Sea (
 		col1,
