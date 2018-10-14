@@ -11,7 +11,7 @@ BEGIN
 		col3,
 		col4,
 		col5,
-		[order]
+		[coordinate_order]
 	)
 	VALUES 	(41,42,43,44,45,5),
 			(31,32,33,34,35,4),
@@ -25,7 +25,7 @@ BEGIN
 		col3,
 		col4,
 		col5,
-		[order]
+		[coordinate_order]
 	)
 	VALUES 	(41,42,43,44,45,5),
 			(31,32,33,34,35,4),

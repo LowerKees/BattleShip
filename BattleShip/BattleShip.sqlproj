@@ -96,4 +96,7 @@
   <ItemGroup>
     <PreDeploy Include="Script.PreDeployment.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="BattleShip.refactorlog" />
+  </ItemGroup>
 </Project>

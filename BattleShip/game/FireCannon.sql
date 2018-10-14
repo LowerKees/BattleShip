@@ -51,7 +51,7 @@ BEGIN
 	SET @sql = '
 	WITH CTE AS (
 		SELECT ' + @column_txt + ' as col
-			, ROW_NUMBER() OVER (ORDER BY [order] ASC) AS rn
+			, ROW_NUMBER() OVER (ORDER BY [coordinate_order] ASC) AS rn
 		FROM opponent.Sea
 	)
 	
@@ -73,7 +73,7 @@ BEGIN
 	SET @sql = '
 	WITH CTE AS (
 		SELECT ' + @column_txt + ' as col
-			, ROW_NUMBER() OVER (ORDER BY [order] ASC) AS rn
+			, ROW_NUMBER() OVER (ORDER BY [coordinate_order] ASC) AS rn
 		FROM opponent.Sea
 	)
 	

@@ -6,7 +6,7 @@ BEGIN
 		@coordinates_to_shoot INT;
 
 	DECLARE
-		@possibilities TABLE (poss INT NOT NULL, [order] INT IDENTITY(1,1));
+		@possibilities TABLE (poss INT NOT NULL, [coordinate_order] INT IDENTITY(1,1));
 
 	-- Check for predefined next turns
 	IF EXISTS (SELECT * FROM opponent.NextTurns)
@@ -38,7 +38,7 @@ BEGIN
 			SET @sql = N'
 				SELECT @coordinates_aimed_at_out = col' + CAST(@column AS NCHAR(1)) + '
 				FROM player.Sea
-				WHERE [order] = ' + CAST(@row AS NCHAR(1)) + ';';
+				WHERE coordinate_order = ' + CAST(@row AS NCHAR(1)) + ';';
 
 			EXEC sp_executesql @sql
 				, N'@coordinates_aimed_at_out INT OUTPUT'
@@ -56,7 +56,7 @@ BEGIN
 		UPDATE tgt
 		SET tgt.col' + CAST(@column AS NCHAR(1)) + ' = ' + CAST(@value AS NVARCHAR(3)) + '
 		FROM player.Sea AS tgt
-		WHERE tgt.[order] = ' + CAST(@row AS NCHAR(1)) + ';';
+		WHERE tgt.coordinate_order = ' + CAST(@row AS NCHAR(1)) + ';';
 	
 	EXEC @sql_for_the_shot;
 

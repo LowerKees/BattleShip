@@ -4,6 +4,6 @@
     [col3] INT NOT NULL,
     [col4] INT NOT NULL,
     [col5] INT NOT NULL,
-	[order] INT NOT NULL
+	[coordinate_order] INT NOT NULL
 );
 
