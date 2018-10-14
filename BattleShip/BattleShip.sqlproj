@@ -80,5 +80,10 @@
     <Build Include="game\PrintLogo.sql" />
     <Build Include="game\PrintManual.sql" />
     <Build Include="dbo\BattleShip.sql" />
+    <Build Include="game\PlaceBoats.sql" />
+    <Build Include="game\LoadConfig.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Script.PostDeployment.sql" />
   </ItemGroup>
 </Project>
