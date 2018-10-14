@@ -14,4 +14,11 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="[coordinate_order]" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="46550630-ae47-42c6-a02a-00c5c680a627" ChangeDateTime="10/14/2018 15:38:28">
+    <Property Name="ElementName" Value="[opponent].[NextTurns]" />
+    <Property Name="ElementType" Value="SqlTable" />
+    <Property Name="ParentElementName" Value="[opponent]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[NextMoves]" />
+  </Operation>
 </Operations>

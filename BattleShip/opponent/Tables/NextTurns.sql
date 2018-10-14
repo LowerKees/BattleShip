@@ -1,4 +1,4 @@
-﻿CREATE TABLE [opponent].[NextTurns]
+﻿CREATE TABLE [opponent].[NextMoves]
 (
 	coordinates INT NOT NULL
 )

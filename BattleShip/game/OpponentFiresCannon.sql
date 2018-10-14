@@ -9,7 +9,7 @@ BEGIN
 		@possibilities TABLE (poss INT NOT NULL, [coordinate_order] INT IDENTITY(1,1));
 
 	-- Check for predefined next turns
-	IF EXISTS (SELECT * FROM opponent.NextTurns)
+	IF EXISTS (SELECT * FROM opponent.[NextMoves])
 		BEGIN
 			PRINT 'Taking a predetermined turn';
 		END
@@ -66,5 +66,13 @@ BEGIN
 					THEN 'De kustwacht heeft een van je schepen geraakt!'
 					ELSE 'De kustwacht schoot mis!'
 			   END;
+
+	-- If a hit has been made, the 
+	-- engine should calculate the next 
+	-- moves.
+	IF @coordinates_aimed_at = 77
+		BEGIN
+			EXEC game.CalculateNextMoves @column, @row;
+		END
 	RETURN;
 END
