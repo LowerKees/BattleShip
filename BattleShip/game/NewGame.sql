@@ -10,26 +10,32 @@ BEGIN
 		col2,
 		col3,
 		col4,
-		col5
+		col5,
+		[order]
 	)
-	VALUES (41,42,43,44,45),
-			(31,32,33,34,35),
-			(21,22,23,24,25),
-			(11,12,13,14,15),
-			(1,2,3,4,5);
+	VALUES 	(41,42,43,44,45,5),
+			(31,32,33,34,35,4),
+			(21,22,23,24,25,3),
+			(11,12,13,14,15,2),
+			(1,2,3,4,5,1);
 
 	INSERT INTO opponent.Sea (
 		col1,
 		col2,
 		col3,
 		col4,
-		col5
+		col5,
+		[order]
 	)
-	VALUES (41,42,43,44,45),
-			(31,32,33,34,35),
-			(21,22,23,24,25),
-			(11,12,13,14,15),
-			(1,2,3,4,5);
+	VALUES 	(41,42,43,44,45,5),
+			(31,32,33,34,35,4),
+			(21,22,23,24,25,3),
+			(11,12,13,14,15,2),
+			(1,2,3,4,5,1);
+
+	-- Plaats de boten
+	EXEC game.PlaceBoats @who='player';
+	EXEC game.PlaceBoats @who='opponent';
 	
 	-- Toon de zeeen
 	EXEC game.PrintSea;

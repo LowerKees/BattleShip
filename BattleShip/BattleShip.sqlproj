@@ -86,8 +86,12 @@
     <Build Include="game\LoadConfig.sql" />
     <Build Include="game\Functions\udf_Random.sql" />
     <Build Include="game\Views\Random.sql" />
+    <Build Include="game\FireCannon.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PreDeploy Include="Script.PreDeployment.sql" />
   </ItemGroup>
 </Project>
