@@ -21,6 +21,4 @@ BEGIN
 	PRINT @starLine;
 	PRINT @printLabel;
 	PRINT @starLine;
-	PRINT @starLine;
-	PRINT @starLine;
 END;

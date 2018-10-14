@@ -7,7 +7,8 @@ BEGIN
 	DECLARE
 		@column INT,
 		@row INT,
-		@i INT;
+		@i INT,
+		@leftMargin NVARCHAR(100) = REPLICATE(char(9), 1);
 
 	-- extract coordinates from input string
 	SELECT @i = CHARINDEX(',', @coordinates);
@@ -20,18 +21,18 @@ BEGIN
 	IF (@column IS NULL OR @column > 5)
 	BEGIN
 		SET @ind_success = CAST(0 AS BIT);
-		SET @msg += 'Column input is not correct. ';
+		SET @msg += @leftMargin + 'De ingevoerde kolom bestaat niet. ';
 	END
 	IF (@row IS NULL OR @row > 5)
 	BEGIN
 		SET @ind_success = CAST(0 AS BIT);
-		SET @msg += 'Row input is not correct. '
+		SET @msg += @leftMargin + 'De ingevoerde rij bestaat niet. '
 	END
 
 	-- complete failure message
 	IF @ind_success = CAST(0 AS BIT)
 	BEGIN
-		SET @msg += 'Try again.';
+		SET @msg += 'Probeer opnieuw.';
 		RETURN;
 	END
 
@@ -56,7 +57,7 @@ BEGIN
 	
 	SELECT @outcome_out = col
 	FROM CTE
-	WHERE rn = 1'
+	WHERE rn = ' + @row_txt + ';'
 
 	EXEC sp_executesql @sql
 		, N'@outcome_out INT OUTPUT'
@@ -65,8 +66,9 @@ BEGIN
 	SET @msg = CASE WHEN @outcome = 66 THEN 'Je schot was raak!'
 					WHEN @outcome = 99 THEN 'Hier schoot je eerder ook al mis!'
 					WHEN @outcome = 999 THEN 'Hier schoot je eerder al raak!'
+					ELSE 'Je schot raakte niets dan water...'
 					END;
-	
+
 	-- fire the cannon!
 	SET @sql = '
 	WITH CTE AS (
@@ -80,4 +82,5 @@ BEGIN
 	WHERE rn = ' + @row_txt + ';';
 
 	EXEC sp_executesql @sql;
+	RETURN;
 END
