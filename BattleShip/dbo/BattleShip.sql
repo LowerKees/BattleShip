@@ -13,6 +13,7 @@ AS
 			DECLARE 
 				@ind_success BIT = 1,
 				@msg NVARCHAR(100),
+				@outcome NVARCHAR(10),
 				@leftMargin NVARCHAR(100) = REPLICATE(char(9), 1);
 
 			EXEC game.FireCannon @input, @ind_success OUTPUT, @msg OUTPUT;
@@ -38,8 +39,12 @@ AS
 					PRINT CONCAT(@leftMargin, '-----');
 					PRINT CONCAT(@leftMargin, @msg);
 					PRINT CONCAT(@leftMargin, '-----');
-					EXEC game.PrintSea;	
-
+					
 					-- Hier evalueren of player heeft gewonnen of verloren
+					EXEC game.EvaluateTheSeas @outcome OUTPUT;
+
+					-- Print de zeeen als nog niemand heeft gewonnen
+					IF @outcome = 'ingame' EXEC game.PrintSea;	
+					ELSE EXEC game.PrintOutcome @outcome;
 				END
 		END
