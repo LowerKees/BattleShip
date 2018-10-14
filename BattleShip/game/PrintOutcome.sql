@@ -13,8 +13,6 @@ BEGIN
 	 \___/  \_/ \____/  \_| |_/ |___/ \_| \_\_| |_/\/  \/ 
 
 ';    
-		EXEC game.PrintSea;
-
 	END
 
 	IF @outcome = 'win'
@@ -28,8 +26,6 @@ BEGIN
 	  \_/  \___/ \___/   \/  \/ \___/\_| \_/
 
 ';
-		EXEC game.PrintSea;
-
 	END
 
 	IF @outcome = 'lose'
@@ -43,7 +39,11 @@ BEGIN
 	  \_/  \___/ \___/  \_____/\___/\____/\____/ 
 
 '; 
-		EXEC game.PrintSea;
-
 	END
+
+	-- Print de laatste stand van de zee
+	EXEC game.PrintSea;
+	PRINT '';
+	PRINT CONCAT(Char(9), 'BattleShip voor Sql Server');
+	PRINT CONCAT(CHar(9), '(c) 2018 - Martijn Beenker');
 END
