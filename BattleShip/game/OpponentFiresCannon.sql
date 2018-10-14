@@ -14,16 +14,6 @@ BEGIN
 			PRINT 'Taking a predetermined turn';
 		END
 
-	-- If no next turns exist, take a guess
-	-- select random column
-	DECLARE @column INT;
-
-	SELECT @column = game.udf_Random(1,6);
-
-	-- select random row
-	DECLARE @row INT;
-
-	SELECT @row = game.udf_Random(1,6);
 
 	-- check the coordinates
 	-- and only accept them if
@@ -35,6 +25,17 @@ BEGIN
 
 	WHILE @coordinates_aimed_at IN (99, 999)
 		BEGIN
+			-- If no next turns exist, take a guess
+			-- select random column
+			DECLARE @column INT;
+
+			SELECT @column = game.udf_Random(1,6);
+
+			-- select random row
+			DECLARE @row INT;
+
+			SELECT @row = game.udf_Random(1,6);
+
 			SET @sql = N'
 				SELECT @coordinates_aimed_at_out = col' + CAST(@column AS NCHAR(1)) + '
 				FROM player.Sea
