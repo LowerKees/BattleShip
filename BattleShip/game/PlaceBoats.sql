@@ -15,11 +15,11 @@ AS
 		BEGIN
 			SET @sql = '
 			UPDATE sea
-			SET col1 = CASE WHEN col1 IN (21,31) THEN @boat ELSE col1 END
-				, col2 = CASE WHEN col2 IN (2) THEN @boat ELSE col2 END
-				, col3 = CASE WHEN col3 IN (3, 23) THEN @boat ELSE col3 END
-				, col4 = CASE WHEN col4 IN (4, 24) THEN @boat ELSE col4 END
-				, col5 = CASE WHEN col5 IN (5, 25) THEN @boat ELSE col5 END
+			SET   col1 = CASE WHEN col1 IN (31,41)  THEN @boat ELSE col1 END
+				, col2 = CASE WHEN col2 IN (12)     THEN @boat ELSE col2 END
+				, col3 = CASE WHEN col3 IN (13, 33) THEN @boat ELSE col3 END
+				, col4 = CASE WHEN col4 IN (14, 34) THEN @boat ELSE col4 END
+				, col5 = CASE WHEN col5 IN (15, 35) THEN @boat ELSE col5 END
 			FROM ' + @who + '.Sea as sea';
 
 			EXEC sp_executesql 
@@ -31,11 +31,11 @@ AS
 		BEGIN
 			SET @sql = '
 			UPDATE sea
-			SET col1 = CASE WHEN col1 IN (1, 11, 21, 41) THEN @boat ELSE col1 END
-				, col2 = CASE WHEN col2 IN (12, 22, 42) THEN @boat ELSE col2 END
-				, col3 = CASE WHEN col3 IN (43) THEN @boat ELSE col3 END
-				, col4 = CASE WHEN col4 IN (44) THEN @boat ELSE col4 END
-				, col5 = CASE WHEN col5 IN (0) THEN @boat ELSE col5 END
+			SET   col1 = CASE WHEN col1 IN (11, 21, 31, 51) THEN @boat ELSE col1 END
+				, col2 = CASE WHEN col2 IN (22, 32, 52)     THEN @boat ELSE col2 END
+				, col3 = CASE WHEN col3 IN (53)             THEN @boat ELSE col3 END
+				, col4 = CASE WHEN col4 IN (54)             THEN @boat ELSE col4 END
+				, col5 = CASE WHEN col5 IN (0)              THEN @boat ELSE col5 END
 			FROM ' + @who + '.Sea as sea';
 
 			EXEC sp_executesql 
@@ -47,11 +47,11 @@ AS
 		BEGIN
 			SET @sql = '
 			UPDATE sea
-			SET col1 = CASE WHEN col1 IN (21) THEN @boat ELSE col1 END
-				, col2 = CASE WHEN col2 IN (2, 22) THEN @boat ELSE col2 END
-				, col3 = CASE WHEN col3 IN (3, 23) THEN @boat ELSE col3 END
-				, col4 = CASE WHEN col4 IN (4, 34) THEN @boat ELSE col4 END
-				, col5 = CASE WHEN col5 IN (5, 35) THEN @boat ELSE col5 END
+			SET   col1 = CASE WHEN col1 IN (31)     THEN @boat ELSE col1 END
+				, col2 = CASE WHEN col2 IN (12, 32) THEN @boat ELSE col2 END
+				, col3 = CASE WHEN col3 IN (13, 33) THEN @boat ELSE col3 END
+				, col4 = CASE WHEN col4 IN (14, 44) THEN @boat ELSE col4 END
+				, col5 = CASE WHEN col5 IN (15, 45) THEN @boat ELSE col5 END
 			FROM ' + @who + '.Sea as sea';
 
 			EXEC sp_executesql 
@@ -63,11 +63,11 @@ AS
 		BEGIN
 			SET @sql = '
 			UPDATE sea
-			SET col1 = CASE WHEN col1 IN (31) THEN @boat ELSE col1 END
-				, col2 = CASE WHEN col2 IN (32) THEN @boat ELSE col2 END
-				, col3 = CASE WHEN col3 IN (33) THEN @boat ELSE col3 END
-				, col4 = CASE WHEN col4 IN (14, 24, 34, 44) THEN @boat ELSE col4 END
-				, col5 = CASE WHEN col5 IN (5, 15) THEN @boat ELSE col5 END
+			SET   col1 = CASE WHEN col1 IN (41)             THEN @boat ELSE col1 END
+				, col2 = CASE WHEN col2 IN (42)             THEN @boat ELSE col2 END
+				, col3 = CASE WHEN col3 IN (43)             THEN @boat ELSE col3 END
+				, col4 = CASE WHEN col4 IN (24, 34, 44, 54) THEN @boat ELSE col4 END
+				, col5 = CASE WHEN col5 IN (15, 25)         THEN @boat ELSE col5 END
 			FROM ' + @who + '.Sea as sea';
 
 			EXEC sp_executesql 
@@ -79,11 +79,11 @@ AS
 		BEGIN
 			SET @sql = '
 			UPDATE sea
-			SET col1 = CASE WHEN col1 IN (31) THEN @boat ELSE col1 END
-				, col2 = CASE WHEN col2 IN (2, 12, 22, 32) THEN @boat ELSE col2 END
-				, col3 = CASE WHEN col3 IN (33) THEN @boat ELSE col3 END
-				, col4 = CASE WHEN col4 IN (34) THEN @boat ELSE col4 END
-				, col5 = CASE WHEN col5 IN (5, 15) THEN @boat ELSE col5 END
+			SET   col1 = CASE WHEN col1 IN (41)             THEN @boat ELSE col1 END
+				, col2 = CASE WHEN col2 IN (12, 22, 32, 42) THEN @boat ELSE col2 END
+				, col3 = CASE WHEN col3 IN (43)             THEN @boat ELSE col3 END
+				, col4 = CASE WHEN col4 IN (44)             THEN @boat ELSE col4 END
+				, col5 = CASE WHEN col5 IN (15, 25)         THEN @boat ELSE col5 END
 			FROM ' + @who + '.Sea as sea';
 
 			EXEC sp_executesql 
@@ -91,4 +91,3 @@ AS
 				, @params = N'@boat INT'
 				, @boat = @boat;
 		END;
-

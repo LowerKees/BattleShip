@@ -6,14 +6,25 @@ AS
 	IF UPPER(@input) IN ('MANUAL','MAN') EXEC game.PrintManual;
 	IF UPPER(@input) IN ('NEWGAME','NEW GAME') EXEC game.NewGame;
 
+	DECLARE
+		@outcome NVARCHAR(10);
+
+	-- Check game state and block if game is finished
+	IF CAST(1 AS BIT) = (SELECT TOP(1) ind_block_move FROM game.State)
+		BEGIN
+			-- Evaluate end game state type
+			EXEC game.EvaluateTheSeas @outcome OUTPUT;
+			-- Reprint outcome
+			EXEC game.PrintOutcome @outcome;
+			RETURN;
+		END;
+
 	-- Schiet het kannon
-	
 	IF PATINDEX('%[0-9],[0-9]%', @input) > 0 
 		BEGIN
 			DECLARE 
 				@ind_success BIT = 1,
 				@msg NVARCHAR(100),
-				@outcome NVARCHAR(10),
 				@leftMargin NVARCHAR(100) = REPLICATE(char(9), 1);
 
 			EXEC game.FireCannon @input, @ind_success OUTPUT, @msg OUTPUT;

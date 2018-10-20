@@ -6,11 +6,7 @@ BEGIN
 	DECLARE 
 		@possible_moves TABLE (possible_coordinate INT);
 
-	DECLARE
-		@coordinate AS INT;
-
-	SET @row -= 1;
-	IF @row = 0 SET @row = null;
+	DECLARE @coordinate INT;
 
 	-- De rij wijkt af van het daadwerkelijke coordinate
 	-- dus hier vind correctie plaats.
@@ -22,28 +18,28 @@ BEGIN
 	IF @coordinate IN (SELECT coordinate FROM game.config WHERE is_left_upper_corner = 1)
 		BEGIN 
 			INSERT INTO @possible_moves
-			VALUES (42), (31);
+			VALUES (52), (41);
 		END
 	ELSE
 	-- Right upper
 	IF @coordinate IN (SELECT coordinate FROM game.config WHERE is_right_upper_corner = 1)
 		BEGIN 
 			INSERT INTO @possible_moves
-			VALUES (44), (35);
+			VALUES (54), (45);
 		END
 	ELSE
 	-- Left lower
 	IF @coordinate IN (SELECT coordinate FROM game.config WHERE is_left_lower_corner = 1)
 		BEGIN 
 			INSERT INTO @possible_moves
-			VALUES (2), (11);
+			VALUES (12), (21);
 		END
 	ELSE
 	-- Right lower
 	IF @coordinate IN (SELECT coordinate FROM game.config WHERE is_right_lower_corner = 1)
 		BEGIN 
 			INSERT INTO @possible_moves
-			VALUES (4), (15);
+			VALUES (14), (25);
 		END
 	ELSE
 	-- For left boundary hits
@@ -93,18 +89,14 @@ BEGIN
 	-- Insert from the table var
 	-- into the actual table
 	INSERT INTO opponent.NextMoves (
-		next_move_column
-		, next_move_row
+		  next_move_row
+		, next_move_column
 		, next_move_order
 		, ind_is_stale
 	)
 	SELECT 
-		next_move_column = CASE 
-							WHEN LEN(possible_coordinate) = 1 THEN possible_coordinate 
-							ELSE CAST(RIGHT(possible_coordinate, 1) AS INT) END
-		, next_move_row = CASE 
-							WHEN LEN(possible_coordinate) = 1 THEN 0
-							ELSE CAST(LEFT(possible_coordinate, 1) AS INT) END
+		  next_move_row = CAST(LEFT(possible_coordinate, 1) AS INT)
+		, next_move_column = CAST(RIGHT(possible_coordinate, 1) AS INT) 
 		, game.udf_Random(1, 100)
 		, CAST(0 AS BIT)							
 	FROM @possible_moves;

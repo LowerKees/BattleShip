@@ -14,11 +14,11 @@ BEGIN
 		col5,
 		[coordinate_order]
 	)
-	VALUES 	(41,42,43,44,45,5),
-			(31,32,33,34,35,4),
-			(21,22,23,24,25,3),
-			(11,12,13,14,15,2),
-			(1,2,3,4,5,1);
+	VALUES 	(51,52,53,54,55,5),
+			(41,42,43,44,45,4),
+			(31,32,33,34,35,3),
+			(21,22,23,24,25,2),
+			(11,12,13,14,15,1);
 
 	INSERT INTO opponent.Sea (
 		col1,
@@ -28,14 +28,17 @@ BEGIN
 		col5,
 		[coordinate_order]
 	)
-	VALUES 	(41,42,43,44,45,5),
-			(31,32,33,34,35,4),
-			(21,22,23,24,25,3),
-			(11,12,13,14,15,2),
-			(1,2,3,4,5,1);
+	VALUES 	(51,52,53,54,55,5),
+			(41,42,43,44,45,4),
+			(31,32,33,34,35,3),
+			(21,22,23,24,25,2),
+			(11,12,13,14,15,1);
 	
 	-- Laad de config tabel
 	EXEC game.LoadConfig;
+
+	-- Laad de juiste state
+	EXEC game.SetState @ind_block_move = 0;
 
 	-- Plaats de boten
 	EXEC game.PlaceBoats @who='player';

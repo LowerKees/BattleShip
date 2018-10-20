@@ -92,6 +92,8 @@
     <Build Include="game\EvaluateTheSeas.sql" />
     <Build Include="game\PrintOutcome.sql" />
     <Build Include="game\CalculateNextMoves.sql" />
+    <Build Include="game\Tables\State.sql" />
+    <Build Include="game\SetState.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />

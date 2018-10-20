@@ -48,8 +48,30 @@ BEGIN
 		FROM opponent.Sea
 		WHERE col5 = 66) AS src;
 
-	IF @number_of_player_boats > 0 AND @number_of_opponent_boats > 0 BEGIN SET @outcome = 'ingame'; RETURN; END
-	IF @number_of_player_boats = 0 AND @number_of_opponent_boats = 0 BEGIN SET @outcome = 'draw'; RETURN; END
-	IF @number_of_player_boats > 0 AND @number_of_opponent_boats = 0 BEGIN SET @outcome = 'win'; RETURN; END
-	IF @number_of_player_boats = 0 AND @number_of_opponent_boats > 0 BEGIN SET @outcome = 'lose'; RETURN; END
+	IF @number_of_player_boats > 0 AND @number_of_opponent_boats > 0 
+		BEGIN 
+			SET @outcome = 'ingame'; 
+			RETURN; 
+		END
+	IF @number_of_player_boats = 0 AND @number_of_opponent_boats = 0 
+		BEGIN 
+			SET @outcome = 'draw'; 
+			-- Block further player moves
+			EXEC game.SetState @ind_block_move = 1;
+			RETURN; 
+		END
+	IF @number_of_player_boats > 0 AND @number_of_opponent_boats = 0 
+		BEGIN 
+			SET @outcome = 'win'; 
+			-- Block further player moves
+			EXEC game.SetState @ind_block_move = 1;
+			RETURN; 
+		END
+	IF @number_of_player_boats = 0 AND @number_of_opponent_boats > 0 
+		BEGIN 
+			SET @outcome = 'lose'; 
+			-- Block futher player moves
+			EXEC game.SetState @ind_block_move = 1;
+			RETURN; 
+		END
 END

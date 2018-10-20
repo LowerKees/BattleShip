@@ -11,3 +11,10 @@ Post-Deployment Script Template
 */
 
 EXEC dbo.BattleShip 'NewGame';
+
+-- Load initial game state
+TRUNCATE TABLE game.State;
+INSERT INTO game.State (
+	ind_block_move
+)
+VALUES (CAST(0 AS BIT));
