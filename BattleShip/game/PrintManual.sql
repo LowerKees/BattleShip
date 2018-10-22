@@ -7,7 +7,7 @@ BEGIN
 		@leftMargin NVARCHAR(100) = REPLICATE(char(9), 1);
 
 	PRINT CONCAT(@leftMargin, '');
-	PRINT CONCAT(@leftMargin, 'GAME MANUAL');
+	PRINT CONCAT(@leftMargin, 'SPELUITLEG');
 	PRINT CONCAT(@leftMargin, '-----------');
 	PRINT CONCAT(@leftMargin, '');
 	PRINT CONCAT(@leftMargin, 'ALGEMEEN');
@@ -39,9 +39,9 @@ BEGIN
 	PRINT CONCAT(@leftMargin, 'Nieuw spel: BattleShip ''NewGame''');
 	PRINT CONCAT(@leftMargin, 'Afvuren kannon: BattleShip ''<int>,<int>''');
 	PRINT CONCAT(@leftMargin, char(9), '- het linker coordinaat geeft de ');
-	PRINT CONCAT(@leftMargin, char(9), '  breedtegraad aan.');
+	PRINT CONCAT(@leftMargin, char(9), '  breedtegraad (kolom) aan.');
 	PRINT CONCAT(@leftMargin, char(9), '- het rechter coordinaat geeft de ');
-	PRINT CONCAT(@leftMargin, char(9), '  hoogtegraad aan.');
+	PRINT CONCAT(@leftMargin, char(9), '  hoogtegraad (rij) aan.');
 	PRINT CONCAT(@leftMargin, '');
 	PRINT CONCAT(@leftMargin, 'SYMBOLEN');
 	PRINT CONCAT(@leftMargin, '---------');
