@@ -71,7 +71,7 @@
     <Folder Include="game\Views" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="game\Tables\config.sql" />
+    <Build Include="game\Tables\Config.sql" />
     <Build Include="player\Tables\Sea.sql" />
     <Build Include="opponent\Tables\Sea.sql" />
     <Build Include="Security\game.sql" />
